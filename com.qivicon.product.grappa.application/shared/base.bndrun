@@ -1,0 +1,3 @@
+-include: \
+	${.}/blacklist.bndrun,\
+	${.}/config.bndrun

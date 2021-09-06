@@ -1,0 +1,94 @@
+# 1. Uses BSNs as bundle locations
+# 2. Rejars the comprising bundles using STORE compression
+# 3. Strips sources from JARs embedded in the executable
+-executable                     =         location='${@bsn}.jar', rejar=STORE, strip='OSGI-OPT/*'
+
+-runtrace                       =         false
+-runkeep                        =         true
+
+# Start Level Decorator. Sorted topologically according to the least dependencies first.
+-runbundles+                    =         ${startlevels}, *;startlevel=${default.startlevel}
+-runstartlevel                  =         begin =    0,\
+                                          step  =   -1,\
+                                          order =    sortbynameversion
+
+# Configuration:
+#
+#  luther                                                    - Check if the runtime is of type GRaPPA
+-runproperties.grappa           =         com.qivicon.runtime.grappa=true
+
+# A hack to let bnd not resolve the current working directory (.) automatically and set it in the properties
+current.directory               =         .
+osgi.directory                  =         ${current.directory}/var/osgi
+data.directory                  =         ${osgi.directory}/data
+bnd.directory                   =         ${osgi.directory}/bnd
+
+# Configuration:
+#
+#  bnd.home                                                  - Storage and Cache Directory for Bnd Agent
+#  snapshot.dir                                              - Bnd Snapshot Directory
+-runproperties.bnd.home         =         bnd.home.dir=${bnd.directory}
+-runproperties.snapshot         =         snapshot.dir=${bnd.directory}/snapshot
+
+# Configuration:
+#
+#  launch.storage.dir                                        - Launcher Storage Directory
+#  org.osgi.framework.storage                                - Framework Storage Directory
+storage.directory               =         ${data.directory}/storage
+-runproperties.storage          =         \
+                                          launch.storage.dir=${storage.directory},\
+                                          org.osgi.framework.storage=${storage.directory}
+
+# Configuration:
+#
+#  smarthome.userdata                                        - SmartHome Plugin User Data Directory
+#  smarthome.configdir                                       - SmartHome Plugin Configuration Directory                                   
+-runproperties.smarthome        =         \
+                                          smarthome.userdata=${data.directory}/userdata,\
+                                          smarthome.configdir=${data.directory}/config
+
+# Configuration:
+#
+#  felix.log.level                                           - Framework internal logging (1 = error, 2 = warning, 3 = info, and 4 = debug)
+-runproperties.log              =         felix.log.level=1
+
+# Configuration:
+#
+#  org.osgi.framework.startlevel.beginning                   - Initial OSGi Framework Start Level
+-runproperties.startlevel       =         org.osgi.framework.startlevel.beginning=101
+
+# Configuration:
+#
+#  aQute.agent.server.port                                   - Bnd Agent Port
+agent_port                      =         1450
+-runproperties.bnd.agent        =         aQute.agent.server.port=0.0.0.0:${agent_port}
+
+# Configuration:
+#
+#  felix.cm.config.plugins                                   - Configuration Admin Plugin
+-runproperties.configadmin        =       felix.cm.config.plugins=org.apache.felix.configadmin.plugin.interpolation
+
+# Configuration:
+#
+#  org.osgi.service.http.port                                - Port for HTTP Server
+#  felix.webconsole.manager.root                             - Felix Webconsole Alias
+-runproperties.http             =         \
+                                          org.osgi.service.http.port=8080,\
+                                          org.apache.felix.http.session.timeout=30,\
+                                          felix.webconsole.manager.root=/system/console
+
+# Configuration:
+#
+#  org.apache.felix.eventadmin.ThreadPoolSize                - The size of the thread pool used for event delivery
+-runproperties.eventadmin       =         org.apache.felix.eventadmin.ThreadPoolSize=4
+
+
+# Configuration:
+#
+#  ds.log.extension                                          - Flag to extend SCR specification logging behavior
+-runproperties.scr              =         ds.log.extension=true
+
+# Configuration:
+#
+#  ds.log.extension                                          - Flag to extend SCR specification logging behavior
+-runproperties.scr              =         ds.log.extension=true

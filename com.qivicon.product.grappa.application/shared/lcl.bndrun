@@ -1,0 +1,8 @@
+-include                : ${.}/vm.bndrun
+
+-runframeworkrestart    : true
+
+-runproperties.lcl      : 
+-runproperties.smarthome:
+
+-runrequires.lcl        : 

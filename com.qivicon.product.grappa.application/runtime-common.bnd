@@ -1,0 +1,12 @@
+bundles: \
+	com.google.guava,\
+	com.google.protobuf,\
+	org.jupnp,\
+	org.jupnp.support
+
+Provide-Capability: \
+    com.qivicon.product.grappa.application;\
+    	name=QIVICON-Runtime-Common
+
+Require-Capability: \
+	${requirement}

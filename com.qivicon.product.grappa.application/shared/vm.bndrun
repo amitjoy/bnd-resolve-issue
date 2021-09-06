@@ -1,0 +1,39 @@
+# settings for heap observations
+jvm.heap.props = \
+    -XX:+HeapDumpOnOutOfMemoryError, \
+    -XX:+ExitOnOutOfMemoryError, \
+    -XX:HeapDumpPath=./var/osgi/jvm/heapdumps
+
+jvm.string.table.props = \
+	-XX:StringTableSize=60013
+
+# configuration to enable JMX
+# connect with "jconsole localhost:9999"
+jvm.jmx.props = \
+    -Dcom.sun.management.jmxremote=true, \
+    -Dcom.sun.management.jmxremote.port=9999, \
+    -Dcom.sun.management.jmxremote.rmi.port=9999, \
+    -Dcom.sun.management.jmxremote.authenticate=false, \
+    -Dcom.sun.management.jmxremote.ssl=false
+
+# use memory settings for 
+# enable flightrecorder
+# does only work when running on Oracle JavaSE Embedded
+# see also https://medium.com/@chrishantha/java-flight-recorder-cheat-sheet-98f5143f5f88
+# see also http://isuru-perera.blogspot.com/2016/03/specifying-custom-event-settings-file.html
+jvm.jfr.props = \
+    -Xmx256M, \
+    -Xms20M, \
+    -Xss256K, \
+    -XX:+UnlockCommercialFeatures, \
+    -XX:+UnlockDiagnosticVMOptions, \
+    -XX:+DebugNonSafepoints, \
+    -XX:+FlightRecorder, \
+    -XX:FlightRecorderOptions='loglevel=info,defaultrecording=true,disk=true,repository=./var/osgi/jvm/flightrecorder/,dumponexit=true,dumponexitpath=./var/osgi/jvm/flightrecorder/', \
+    -XX:StartFlightRecording='name=runtime-launcher-recording'
+
+-runvm: \
+    -ea, \
+    ${jvm.string.table.props}, \
+    ${jvm.heap.props}, \
+    ${jvm.jmx.props}

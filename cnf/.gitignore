@@ -1,0 +1,7 @@
+/build/
+/generated/
+/bin/
+/cache/
+/local/index.*
+local.maven
+/core/local.bnd

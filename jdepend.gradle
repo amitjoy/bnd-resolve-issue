@@ -1,0 +1,22 @@
+apply plugin: 'jdepend'
+
+jdepend {
+   toolVersion = "2.9.1"
+   sourceSets = [sourceSets.main]
+   ignoreFailures = true
+}
+
+jdependMain {
+   reports {
+      xml.enabled true
+      text.enabled false
+   }
+   doLast{
+     ant.xslt(
+        in: "$reporting.baseDir/jdepend/main.xml",
+        style: "$rootDir/config/jdepend/jdepend-report.xslt",
+        out:"$reporting.baseDir/jdepend/main.html")
+   }
+}
+
+

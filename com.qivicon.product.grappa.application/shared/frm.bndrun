@@ -1,0 +1,7 @@
+launcher.name = firmware-launcher
+
+-runrequires.frm: \
+	bnd.identity;id='org.apache.felix.converter'
+
+-runproperties.loglevel: \
+    org.osgi.service.log.admin.loglevel=INFO

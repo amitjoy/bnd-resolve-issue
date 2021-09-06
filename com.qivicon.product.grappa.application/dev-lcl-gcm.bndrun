@@ -1,0 +1,32 @@
+-include: \
+	shared/base.bndrun,\
+	\
+	shared/dev.bndrun,\
+	shared/lcl.bndrun,\
+	shared/gcm.bndrun
+
+# generated wrongly by gradle resolve operation
+-runbundles: \
+	biz.aQute.remote.agent;version='[5.3.0,5.3.1)',\
+	californium-osgi;version='[1.0.9,1.0.10)',\
+	com.google.guava;version='[15.0.0,15.0.1)',\
+	com.google.protobuf;version='[3.15.5,3.15.6)',\
+	com.qivicon.product.grappa.application.runtime-common;version=snapshot,\
+	com.qivicon.product.grappa.application.runtime-consumer;version=snapshot,\
+	com.qivicon.product.grappa.application.runtime-developer;version=snapshot,\
+	org.apache.commons.commons-fileupload;version='[1.4.0,1.4.1)',\
+	org.apache.commons.commons-io;version='[2.7.0,2.7.1)',\
+	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
+	org.apache.felix.converter;version='[1.0.14,1.0.15)',\
+	org.apache.felix.http.jetty;version='[4.1.2,4.1.3)',\
+	org.apache.felix.http.servlet-api;version='[1.1.2,1.1.3)',\
+	org.apache.felix.scr;version='[2.1.28,2.1.29)',\
+	org.apache.felix.webconsole;version='[4.6.0,4.6.1)',\
+	org.eclipse.jetty.http;version='[9.4.40,9.4.41)',\
+	org.eclipse.jetty.io;version='[9.4.40,9.4.41)',\
+	org.eclipse.jetty.util;version='[9.4.40,9.4.41)',\
+	org.jupnp;version='[2.5.2,2.5.3)',\
+	org.jupnp.support;version='[2.5.2,2.5.3)',\
+	org.osgi.util.function;version='[1.1.0,1.1.1)',\
+	org.osgi.util.promise;version='[1.1.1,1.1.2)',\
+	slf4j.api;version='[1.7.32,1.7.33)'

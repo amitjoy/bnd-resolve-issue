@@ -1,0 +1,16 @@
+-workingset          : grappa
+-sub                 : *.bnd
+requirement          : ${replacelist;${bundles};.+;osgi.identity\\;filter:=\\"(osgi.identity=$0)\\"\\;effective:=active}
+export.flag          : false
+export.config        : \
+	dev-tgt-gcm.bndrun; \
+		type               =    bnd.exporter.obr; \
+		name               =    dev-tgt-gcm.bndrun-obr.xml; \
+		outputdir          =    obr; \
+		excludesystem      =    false, \
+	frm-tgt-gcm.bndrun; \
+		type               =    bnd.exporter.obr; \
+		name               =    frm-tgt-gcm.bndrun-obr.xml; \
+		outputdir          =    obr; \
+		excludesystem      =    false
+-export              : ${if;${is;${export.flag};true};${export.config};}

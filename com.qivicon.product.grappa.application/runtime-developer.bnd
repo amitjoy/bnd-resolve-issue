@@ -1,0 +1,13 @@
+bundles: \
+	org.apache.felix.webconsole
+
+Provide-Capability: \
+	com.qivicon.product.grappa.application;\
+		name=QIVICON-Runtime-Developer
+
+Require-Capability: \
+	com.qivicon.product.grappa.application;\
+    	filter:="(name=QIVICON-Runtime-Common)";\
+    	effective:=active,\
+    \
+	${requirement}

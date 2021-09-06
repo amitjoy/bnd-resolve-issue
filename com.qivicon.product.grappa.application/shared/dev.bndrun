@@ -1,0 +1,3 @@
+-include                            : ${.}/frm.bndrun, ${.}/devtools.bndrun
+-runrequires.dev                    : bnd.identity;id='biz.aQute.remote.agent'
+-runproperties.dev                  : org.osgi.service.log.admin.loglevel=DEBUG
